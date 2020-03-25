@@ -2,10 +2,12 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 require("dotenv/config");
 
 // Middleware
 // Can be used for authentication
+app.use(cors());
 app.use(bodyParser.json());
 
 // Import Routes
