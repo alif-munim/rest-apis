@@ -6,7 +6,6 @@ const cors = require("cors");
 require("dotenv/config");
 
 // Middleware
-// Can be used for authentication
 app.use(cors());
 app.use(bodyParser.json());
 
