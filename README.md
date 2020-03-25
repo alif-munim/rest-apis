@@ -4,7 +4,8 @@ A simple RESTful API created using Node.js, Express, & MongoDB.
 
 *Shoutout to Dev Ed and his "Build a Restful Api" tutorial on YouTube*
 
-## Connecting to MongoDB
+
+## 💽 Connecting to MongoDB
 
 Use the mongoose ORM to connect to MongoDB Atlas.
 
@@ -29,7 +30,8 @@ mongoose.connect(process.env.DB_CONNECTION, () => {
 });
 ```
 
-## Mongoose Models
+
+## 🦡 Mongoose Models
 
 Create a schema for posts.
 
@@ -56,7 +58,8 @@ const PostSchema = mongoose.Schema({
 module.exports = mongoose.model("Posts", PostSchema);
 ```
 
-## Some Middleware
+
+## 🎁 Some Middleware
 
 Install CORS to allow for cross-origin connections and body-parser to access request bodies:
 
@@ -74,7 +77,8 @@ app.use(cors());
 app.use(bodyParser.json());
 ```
 
-## Setting Routes
+
+## 🏄‍♂️ Setting Routes
 
 Cleaning things up.
 
@@ -97,7 +101,8 @@ const Post = require("../models/Post");
 module.exports = router;
 ```
 
-## CRUD Functionality
+
+## ✏ CRUD Functionality
 
 Use the following functions:
 
