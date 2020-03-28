@@ -113,29 +113,42 @@ module.exports.loginValidation = loginValidation;
 
 ### Hashing Passwords: bcrypt
 
+Ensure that the post route callback is async. Must await **bcrypt.genSalt()** and **bcrypt.hash()**
+
 ```javascript
 router.post("/register", async (req, res) => {
 
     // Data Validation 
-    ...
 
     // User Exists?
-    ...
 
     // Hash Password
     const salt = await bcrypt.genSalt(10);
     const hashPass = await bcrypt.hash(req.body.password, salt);
 
     // Create User
-    ...
 
-    try {
-        // Save User
-        ...
-    } catch(err) {
-        // Return Errors
-        ...
-    }
+    // Try Catch Block: Save User
 });
 
+```
+
+### Verify Tokens
+
+```
+const jwt = require("jsonwebtoken");
+
+// Auth Middleware
+module.exports = function(req, res, next) {
+    const token = req.header("auth-token");
+    if(!token) return res.status(401).send("Access Denied");
+    
+    try {
+        const verified = jwt.verify(token, process.env.TOKEN_SECRET);
+        req.user = verified;
+        next();
+    } catch (err) {
+        res.status(400).send("Invalid Token");
+    }
+}
 ```
