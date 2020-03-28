@@ -32,7 +32,7 @@ npm install express mongoose dotenv jsonwebtoken bcryptjs @hapi/joi
 
   For schema validation. Check required fields, minimum lengths, and valid emails.
 
-### Express Setup
+### 💨 Express Setup
 
 ```
 const express = require("express");
@@ -47,7 +47,7 @@ app.listen(5000, () => {
 });
 ```
 
-### Setting Routes
+### 🏄‍♂️ Setting Routes
 
 ```
 // Import Routes
@@ -59,7 +59,7 @@ app.use("/api/user", authRoute);
 app.use("/api/posts", postRoute);
 ```
 
-### Connecting to MongoDB
+### 💽 Connecting to MongoDB
 
 Import mongoose and dotenv libraries. DB connection link is stored in the DB_CONNECT environment variable.
 
@@ -78,7 +78,7 @@ mongoose.connect(process.env.DB_CONNECT, () => {
 });
 ```
 
-### Validation: @hapi/joi
+### 🎟 Validation: @hapi/joi
 
 ```
 const Joi = require("@hapi/joi");
@@ -95,32 +95,22 @@ const registerValidation = (data) => {
     return schema.validate(data);
 }
 
-// Login Validation
-const loginValidation = (data) => {
-    const schema = Joi.object({
-        email: Joi.string().min(6).required().email(),
-        password: Joi.string().min(6).required()
-    });
-
-    // Data Validation
-    return schema.validate(data);
-}
-
+// Login Validation: Same Idea
 
 module.exports.registerValidation = registerValidation;
 module.exports.loginValidation = loginValidation;
 ```
 
-### Hashing Passwords: bcrypt
+### 🔐 Hashing Passwords: bcrypt
 
 Ensure that the post route callback is async. Must await **bcrypt.genSalt()** and **bcrypt.hash()**
 
 ```javascript
 router.post("/register", async (req, res) => {
 
-    // Data Validation 
+    // Data Validation: See Validation: @hapi/joi
 
-    // User Exists?
+    // User Exists? Mongo .findOne()
 
     // Hash Password
     const salt = await bcrypt.genSalt(10);
@@ -133,7 +123,9 @@ router.post("/register", async (req, res) => {
 
 ```
 
-### Verify Tokens
+### 👛 Verify Tokens
+
+In ./verifyToken.js:
 
 ```
 const jwt = require("jsonwebtoken");
@@ -151,4 +143,24 @@ module.exports = function(req, res, next) {
         res.status(400).send("Invalid Token");
     }
 }
+```
+
+### 💂‍♂️ Protected Routes: Example
+
+Use verify function from ./verifyToken.js as middleware.
+
+```
+const router = require("express").Router();
+const verify = require("./verifyToken");
+
+router.get("/", verify, (req, res) => {
+    res.json({ 
+        posts: {
+            title: "1st Post",
+            description: "Private data! Do not share!"
+        }
+    });
+})
+
+module.exports = router;
 ```
