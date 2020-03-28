@@ -113,7 +113,7 @@ module.exports.loginValidation = loginValidation;
 
 ### Hashing Passwords: bcrypt
 
-```
+```javascript
 router.post("/register", async (req, res) => {
 
     // Data Validation 
