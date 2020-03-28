@@ -157,8 +157,8 @@ module.exports = function(req, res, next) {
     }
 }
 ```
-
-
+<br/>
+<br/>
 
 ### 💂‍♂️ Protected Routes: Example
 
