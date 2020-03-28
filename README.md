@@ -32,7 +32,8 @@ npm install express mongoose dotenv jsonwebtoken bcryptjs @hapi/joi
 
   For schema validation. Check required fields, minimum lengths, and valid emails.
 
-
+<br/>
+<br/>
 
 ### 💨 Express Setup
 
@@ -48,8 +49,8 @@ app.listen(5000, () => {
     console.log("Server running on port 5000!");
 });
 ```
-
-
+<br/>
+<br/>
 
 ### 🏄‍♂️ Setting Routes
 
@@ -62,8 +63,8 @@ const postRoute = require("./routes/posts");
 app.use("/api/user", authRoute);
 app.use("/api/posts", postRoute);
 ```
-
-
+<br/>
+<br/>
 
 ### 💽 Connecting to MongoDB
 
@@ -83,8 +84,8 @@ mongoose.connect(process.env.DB_CONNECT, () => {
     console.log("Connected to MongoDB!")
 });
 ```
-
-
+<br/>
+<br/>
 
 ### 🎟 Validation: @hapi/joi
 
@@ -108,8 +109,8 @@ const registerValidation = (data) => {
 module.exports.registerValidation = registerValidation;
 module.exports.loginValidation = loginValidation;
 ```
-
-
+<br/>
+<br/>
 
 ### 🔐 Hashing Passwords: bcrypt
 
@@ -132,8 +133,8 @@ router.post("/register", async (req, res) => {
 });
 
 ```
-
-
+<br/>
+<br/>
 
 ### 👛 Verify Tokens
 
