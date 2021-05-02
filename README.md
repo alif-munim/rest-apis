@@ -3,19 +3,23 @@ Some of my first attempts at building my own REST APIs.
 <br/><br/>
 
 ## table of contents
-* [first-rest](#first-rest)
-* [members-api](#members-api)
-* [auth-api](#auth-api)
+* [First REST](#first-rest)
+* [Members API](#members-api)
+* [Auth API](#auth-api)
+
+<br/><br/>
 
 <hr/>
 
-# First REST
+<br/><br/>
+
+# 1️⃣ First REST
 A simple RESTful API created using Node.js, Express, & MongoDB.
 
 *Shoutout to Dev Ed and his "Build a Restful Api" tutorial on YouTube*
 
 
-## 💽 Connecting to MongoDB
+## Connecting to MongoDB
 
 Use the mongoose ORM to connect to MongoDB Atlas.
 
@@ -41,7 +45,7 @@ mongoose.connect(process.env.DB_CONNECTION, () => {
 ```
 
 
-## 🦡 Mongoose Models
+## Mongoose Models
 
 Create a schema for posts.
 
@@ -69,7 +73,7 @@ module.exports = mongoose.model("Posts", PostSchema);
 ```
 
 
-## 🎁 Some Middleware
+## Some Middleware
 
 Install CORS to allow for cross-origin connections and body-parser to access request bodies:
 
@@ -88,7 +92,7 @@ app.use(bodyParser.json());
 ```
 
 
-## 🏄‍♂️ Setting Routes
+## Setting Routes
 
 Cleaning things up.
 
@@ -112,7 +116,7 @@ module.exports = router;
 ```
 
 
-## ✏ CRUD Functionality
+## CRUD Functionality
 
 Use the following functions:
 
@@ -147,7 +151,9 @@ router.patch("/:postID", async (req, res) => {
 
 <hr/>
 
-# Members API
+<br/><br/>
+
+# 💂‍♂️ Members API
 A simple API that returns member information as JSON data.
 
 Created using express.
@@ -225,7 +231,9 @@ module.exports = router;
 
 <hr/>
 
-# Auth API
+<br/><br/>
+
+# 🔐 Auth API
 
 A login and register API with authentication using JSON web tokens.
 
@@ -262,7 +270,7 @@ npm install express mongoose dotenv jsonwebtoken bcryptjs @hapi/joi
 <br/>
 <br/>
 
-### 💨 Express Setup
+### Express Setup
 
 ```
 const express = require("express");
@@ -279,7 +287,7 @@ app.listen(5000, () => {
 <br/>
 <br/>
 
-### 🏄‍♂️ Setting Routes
+### Setting Routes
 
 ```
 // Import Routes
@@ -293,7 +301,7 @@ app.use("/api/posts", postRoute);
 <br/>
 <br/>
 
-### 💽 Connecting to MongoDB
+### Connecting to MongoDB
 
 Import mongoose and dotenv libraries. DB connection link is stored in the DB_CONNECT environment variable.
 
@@ -314,7 +322,7 @@ mongoose.connect(process.env.DB_CONNECT, () => {
 <br/>
 <br/>
 
-### 🎟 Validation: @hapi/joi
+### Validation: @hapi/joi
 
 ```
 const Joi = require("@hapi/joi");
@@ -339,7 +347,7 @@ module.exports.loginValidation = loginValidation;
 <br/>
 <br/>
 
-### 🔐 Hashing Passwords: bcrypt
+### Hashing Passwords: bcrypt
 
 Ensure that the post route callback is async. Must await **bcrypt.genSalt()** and **bcrypt.hash()**
 
@@ -363,7 +371,7 @@ router.post("/register", async (req, res) => {
 <br/>
 <br/>
 
-### 👛 Verify Tokens
+### Verify Tokens
 
 In ./verifyToken.js:
 
@@ -387,7 +395,7 @@ module.exports = function(req, res, next) {
 <br/>
 <br/>
 
-### 💂‍♂️ Protected Routes: Example
+### Protected Routes: Example
 
 Use verify function from ./verifyToken.js as middleware.
 
